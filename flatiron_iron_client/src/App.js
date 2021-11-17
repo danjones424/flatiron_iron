@@ -3,8 +3,16 @@ import './App.css';
 import AddButton from './components/AddButton';
 import Header from './components/Header';
 import WorkoutCards from './components/WorkoutCards';
+import React, {useEffect} from "react";
+
 
 function App() {
+
+  useEffect(() => {
+    fetch("http://localhost:9292/workouts")
+    .then(resp => resp.json())
+    .then(data => console.log(data))
+ },[])
 
   const getbig = [
     {

@@ -8,6 +8,8 @@ const Card = ({getbig: {date, workout_cat, workout}}) => {
             <h3>{date}</h3>
             <h4>{workout_cat}</h4>
             <h4>{workout}</h4>
+            <button>Update</button>
+            <button>Delete</button>
         </div>
     </li>
     )
