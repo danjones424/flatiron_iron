@@ -3,17 +3,20 @@ import './App.css';
 import AddButton from './components/AddButton';
 import Header from './components/Header';
 import WorkoutCards from './components/WorkoutCards';
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 
 
 function App() {
 
+  const [workouts, setWorkouts] = useState([])
+
   useEffect(() => {
     fetch("http://localhost:9292/workouts")
     .then(resp => resp.json())
-    .then(data => console.log(data))
+    .then(setWorkouts)
  },[])
 
+ console.log(workouts)
   const getbig = [
     {
       "date": "5-21-2021",
@@ -50,7 +53,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <WorkoutCards getbig={getbig}/>
+      <WorkoutCards getbig={workouts}/>
       <AddButton />
     </div>
   );

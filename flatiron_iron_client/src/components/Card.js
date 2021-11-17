@@ -1,12 +1,11 @@
 import React from 'react'
 
 
-const Card = ({getbig: {date, workout_cat, workout}}) => {
+const Card = ({getbig: {exercise, workout}}) => {
     return (
     <li id="card_list">
         <div id="card">
-            <h3>{date}</h3>
-            <h4>{workout_cat}</h4>
+            <h4>{exercise}</h4>
             <h4>{workout}</h4>
             <button>Update</button>
             <button>Delete</button>
