@@ -1,14 +1,25 @@
 import React from 'react'
 
 
-const Card = ({getbig: {exercise, workout}}) => {
+const Card = ({handleUpdateWorkout, deleteWorkout, getbig: {exercises, workout, id}}) => {
+    
+    const handleDelete = () => {
+        deleteWorkout(id);
+        fetch(`http://localhost:9292/selectedexercise/${id}`, {
+          method: "DELETE",
+        });
+      };
+    
     return (
     <li id="card_list">
         <div id="card">
-            <h4>{exercise}</h4>
-            <h4>{workout}</h4>
+            {console.log(exercises)}
+            {console.log(workout)}
+            <h3>{workout.date}</h3>
+            <h4>{exercises.map(e => e.name)}</h4>
+            <h4>{workout.name}</h4>
             <button>Update</button>
-            <button>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
         </div>
     </li>
     )
