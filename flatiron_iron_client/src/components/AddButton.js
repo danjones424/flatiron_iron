@@ -1,15 +1,27 @@
 import React, {useState} from 'react'
 
-const AddButton = () => {
-
+const AddButton = ({mkWorkout, renderToggle, setRenderToggle}) => {
+    const [newWorkout, setNewWorkout] = useState({workout: {},ex: []})
     const [formData, setFormData] = useState({
         date: '',
+        name: '',
         category: '',
         workout: '',
         sets: '',
         reps: '',
         rest: false,
     })
+
+    const handleSubmit = () => {
+        const wk = {name: formData.name, date: formData.date, rest: formData.rest}
+        mkWorkout(wk)
+        // fetch('http://localhost:9292/workouts',{
+        // method: "POST", 
+        // headers: { Accept: "application/json", "Content-Type": "application/json", }, 
+        // body: JSON.stringify(wk),
+        // },)
+        //.then(setRenderToggle(!renderToggle))
+    }
 
     const addWorkout = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value})
@@ -22,6 +34,8 @@ const AddButton = () => {
             <form  id='form' >
                 <label>Today's Date:</label>
                     <input type="text" name='date' onChange={addWorkout}></input>
+                <label>Name:</label>
+                    <input type="text" name='Name' onChange={addWorkout}></input>
                 <label>Workout Category:</label>
                     <select name="category" id="categories" onChange={addWorkout} >
                         <option name='default' value={null}> </option>
@@ -41,7 +55,7 @@ const AddButton = () => {
                     <input type="text" name='reps' onChange={addWorkout} ></input>                   
                 
                 <br></br>
-                <button>Add Workout</button>
+                <button onClick = {handleSubmit}>Add Workout</button>
                 <br></br>
                 <div id="workout_box">
 

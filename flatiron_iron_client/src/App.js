@@ -9,12 +9,13 @@ import React, {useEffect, useState} from "react";
 function App() {
 
   const [workouts, setWorkouts] = useState([])
+  const [renderToggle, setRenderToggle] = useState(true)
 
   useEffect(() => {
     fetch("http://localhost:9292/workouts")
     .then(resp => resp.json())
     .then(setWorkouts)
- },[])
+ },[renderToggle])
 
  function handleUpdateWorkout(updatedWorkout) {
   const updatedWorkouts = workouts.map((w) => {
@@ -28,9 +29,22 @@ function App() {
 }
 
 const deleteWorkout = (id) => {
-  const updatedWorkouts = workouts.filter((w) => w.id !== id);
-  setWorkouts(updatedWorkouts);
+  // const updatedWorkouts = workouts.filter((w) => w.id !== id);
+  fetch(`http://localhost:9292/workouts/${id}`, {
+          method: "DELETE",
+        })
+  setRenderToggle(!renderToggle)
+  // setWorkouts(updatedWorkouts);
 };
+
+const mkWorkout = (stuff) => {
+  fetch('http://localhost:9292/workouts',{
+        method: "POST", 
+        headers: { Accept: "application/json", "Content-Type": "application/json", }, 
+        body: JSON.stringify(stuff),
+        },)
+  setRenderToggle(!renderToggle)
+}
 
  
   // const getbig = [
@@ -71,7 +85,7 @@ const deleteWorkout = (id) => {
       <Header />
       <WorkoutCards getbig={workouts} deleteWorkout={deleteWorkout} handleUpdateWorkout={handleUpdateWorkout}/>
       <br></br>
-      <AddButton />
+      <AddButton mkWorkout = {mkWorkout} rednerToggle={renderToggle} setRenderToggle = {setRenderToggle}/>
     </div>
   );
 }
