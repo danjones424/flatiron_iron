@@ -37,13 +37,21 @@ const deleteWorkout = (id) => {
   // setWorkouts(updatedWorkouts);
 };
 
-const mkWorkout = (stuff) => {
+const mkWorkout = (data) => {
   fetch('http://localhost:9292/workouts',{
         method: "POST", 
         headers: { Accept: "application/json", "Content-Type": "application/json", }, 
-        body: JSON.stringify(stuff),
-        },)
-  setRenderToggle(!renderToggle)
+        body: JSON.stringify(data),
+        })
+        .then(res => res.json())
+        .then(new_workout => setWorkouts([...workouts, new_workout]))
+  // data.exes.forEach(ex => fetch('http://localhost:9292/selectedexercises',{
+  //   method: "POST", 
+  //   headers: { Accept: "application/json", "Content-Type": "application/json", }, 
+  //   body: JSON.stringify(ex),
+  //   },))
+  //setRenderToggle(!renderToggle)
+
 }
 
  
@@ -85,7 +93,7 @@ const mkWorkout = (stuff) => {
       <Header />
       <WorkoutCards getbig={workouts} deleteWorkout={deleteWorkout} handleUpdateWorkout={handleUpdateWorkout}/>
       <br></br>
-      <AddButton mkWorkout = {mkWorkout} rednerToggle={renderToggle} setRenderToggle = {setRenderToggle}/>
+      <AddButton workouts = {workouts} mkWorkout = {mkWorkout} rednerToggle={renderToggle} setRenderToggle = {setRenderToggle}/>
     </div>
   );
 }
