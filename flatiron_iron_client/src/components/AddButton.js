@@ -27,6 +27,7 @@ const AddButton = ({workouts, mkWorkout, renderToggle, setRenderToggle}) => {
         let data = {workout: wk, exes: exList}
         //console.log(data)
         mkWorkout(data)
+        setExList([])
     }
 
     const test = (e) => {
@@ -59,15 +60,22 @@ const AddButton = ({workouts, mkWorkout, renderToggle, setRenderToggle}) => {
     return (
         <div>
             <form  id='form' >
-                <div>
+                <div className = 'workoutForm'>
+                    <div>
                     <label>Workout Date:</label>
                         <input type="text" name='date' onChange={addWorkout}></input>
+                    </div>
+                    <div>
                     <label>Workout Name:</label>
                         <input type="text" name='name' onChange={addWorkout}></input>
+                    </div>
+                    <div>
                     <label>Rest Day?</label>
                         <input type="checkbox" id="rest" name="rest" value={false}  onChange={addWorkout}></input>
+                    </div>
                 </div>
-                <div>
+                <div className = 'exerciseForm'>
+                    <div>
                     <label>Select Exercises:</label>
                         {/* <select name="category" id="categories" onChange={addWorkout} >
                             <option name='default' value={null}> </option>
@@ -81,15 +89,20 @@ const AddButton = ({workouts, mkWorkout, renderToggle, setRenderToggle}) => {
                             <option name='default' value={null}> </option>
                             {exercises.map(ex => <option name = "selectedExercises" value = {ex.name}> {ex.name}</option>)}
                         </select>
+                        </div>
                     
                     {/* <label>Workout:</label>
                         <input type="text" name='workout'  onChange={addWorkout}></input> */}
+                    <div>
                     <label>Sets:</label>
                         <input type="text" name='sets' onChange={addWorkout} ></input>   
+                    </div>
+                    <div>
                     <label>Reps:</label>
-                        <input type="text" name='reps' onChange={addWorkout} ></input>                   
+                        <input type="text" name='reps' onChange={addWorkout} ></input>     
+                    </div>              
                     
-                    <br></br>
+                    
                     <button onClick = {handleExAdd}>Add Exercise</button>
                 </div>
                 <div>
@@ -97,8 +110,7 @@ const AddButton = ({workouts, mkWorkout, renderToggle, setRenderToggle}) => {
                    )}
                 </div>
                 <button onClick = {handleSubmit}>Submit Workout</button>
-                <br></br>
-                <button onClick = {test}>test</button>
+                {/* <button onClick = {test}>test</button> */}
                 <div id="workout_box">
 
                 </div>

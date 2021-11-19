@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #87B4C0;
 }
 
 code {
@@ -12,16 +13,39 @@ code {
     monospace;
 }
 
-#card:hover{
+.workoutForm{
+padding: 10px;
+border-radius: 10px;
+display: block;
+border: 2px solid black;
+margin: 10px;
+background-color: #F2B880
+}
+
+.wkLi {
+  margin: 5px;
+}
+
+.exerciseForm{
+  padding: 10px;
+  border-radius: 10px;
+  display: block;
+  border: 2px solid black;
+  margin: 10px;
+  background-color: #F2B880
+}
+
+.card:hover{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-#card #card_list {
+.card .card_list {
   height: 225px;
   position: relative;
   width: 300px;
   display: flex;
   justify-content: center;
+  background-color: #F2B880;
 }
 
 form {
@@ -39,6 +63,8 @@ form {
   border: 1px solid #ccc;
   width: 300px;
   padding: .5rem;
+  background-color: #F2B880
+
 }
 
 #cards {
